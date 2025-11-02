@@ -14,10 +14,8 @@
 //     - Moyenne >= 10 : "Passable"
 //     - Moyenne < 10  : "À revoir"
 // Dans le cas où l'élève n'a pas de notes, la moyenne doit être considérée comme 0 et le commentaire "À revoir".
-function showStudentBulletin(eleves) {
-	
-}
+function showStudentBulletin(eleves) {}
 
 module.exports = {
-	showStudentBulletin,
+  showStudentBulletin,
 };
