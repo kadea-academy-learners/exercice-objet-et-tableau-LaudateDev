@@ -11,7 +11,7 @@ function whoIsAdmin(utilisateurs) {
   for (let i = 0; i < utilisateurs.length; i++) {
     const userAdmin = utilisateurs[i].estAdmin;
     const afficherUtilisateur = utilisateurs[i];
-    if (userAdmin == true) {
+    if (userAdmin === true) {
       admins.push(afficherUtilisateur.nom);
     }
   }
