@@ -7,7 +7,7 @@
 //    - estConnecte: boolean (indique si l'utilisateur est connecté)
 //    - estBloque: boolean (indique si l'utilisateur est bloqué)
 
-// 2. Écris une fonction `signUp(nom, email, password, confirmPassword)` qui :
+// 2. Écris une fonction `signUp(nom, email, password, confirmPassword)` qui
 //    - Vérifie si l'email existe déjà dans `baseDeDonnees`. Si oui, retourne un message d'erreur.
 //    - Vérifie si `password` et `confirmPassword` sont identiques. Si non, retourne un message d'erreur.
 //    - Sinon, ajoute le nouvel utilisateur à `baseDeDonnees` (avec un id unique, estConnecte à false, estBloque à false) et retourne l'objet utilisateur créé.
@@ -21,11 +21,51 @@
 const baseDeDonnees = [];
 
 function signUp(nom, email, password, confirmPassword) {
-	
+  for (let i = 0; i < baseDeDonnees.length; i++) {
+    if (baseDeDonnees[i].email === email) {
+      return "Cet email existe déjà !";
+    }
+  }
+
+  if (password !== confirmPassword) {
+    return "Les mots de passe ne correspondent pas !";
+  }
+
+  let nouvelId = baseDeDonnees.length + 1;
+
+  let nouvelUtilisateur = {
+    id: nouvelId,
+    nom: nom,
+    email: email,
+    password: password,
+    estConnecte: false,
+    estBloque: false,
+  };
+
+  baseDeDonnees.push(nouvelUtilisateur);
+
+  return nouvelUtilisateur;
 }
 
-function login() {
-	
+function login(email, password) {
+  for (let i = 0; i < baseDeDonnees.length; i++) {
+    let utilisateur = baseDeDonnees[i];
+
+    if (utilisateur.email === email) {
+      if (utilisateur.password !== password) {
+        return "Mot de passe incorrect !";
+      }
+
+      if (utilisateur.estBloque === true) {
+        return "Votre compte est bloqué !";
+      }
+
+      utilisateur.estConnecte = true;
+      return utilisateur;
+    }
+  }
+
+  return "Utilisateur introuvable !";
 }
 
 module.exports = { baseDeDonnees, signUp, login };
