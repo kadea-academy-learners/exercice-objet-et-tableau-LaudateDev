@@ -13,7 +13,7 @@
 //     - Moyenne >= 12 : "Bien"
 //     - Moyenne >= 10 : "Passable"
 //     - Moyenne < 10  : "À revoir"
-// Dans le cas où l'élève n'a pas de notes, la moyenne doit être considérée comme 0 et le commentaire "À revoir".
+// Dans le cas où l'élève n'a pas de notes, la moyenne doit être considérée comme 0 et le commentaire "À revoir"
 const eleves = [
   { nom: "Tasisu", notes: [15, 18, 17] },
   { nom: "Kavunga", notes: [10, 12, 11] },
