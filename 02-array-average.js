@@ -3,7 +3,6 @@
 // - Calcule la moyenne des notes
 // - retourne un message "Réussi" si la moyenne est >= 10, sinon "Échoué"
 
-function averageNote(notes) {}
 function averageNote(notes) {
   let somme = 0;
   for (let i = 0; i < notes.length; i++) {

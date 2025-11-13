@@ -15,41 +15,33 @@
 //     - Moyenne < 10  : "À revoir"
 // Dans le cas où l'élève n'a pas de notes, la moyenne doit être considérée comme 0 et le commentaire "À revoir".
 function showStudentBulletin(eleves) {
-  let bulletins = [];
-  for (let i = 0; i < eleves.length; i++) {
-    let eleve = eleves[i];
-    let moyenne = 0;
-    if (eleve.notes.length > 0) {
-      let somme = 0;
-      for (let j = 0; j < eleve.notes.length; j++) {
-        somme = somme + eleve.notes[j];
-      }
-      moyenne = somme / eleve.notes.length;
-    }
-    moyenne = moyenne.toFixed(2);
-    let commentaire = "";
-    let moyenneNum = Number(moyenne);
-    if (moyenneNum >= 16) {
-      commentaire = "Excellent";
-    } else if (moyenneNum >= 14) {
-      commentaire = "Très Bien";
-    } else if (moyenneNum >= 12) {
-      commentaire = "Bien";
-    } else if (moyenneNum >= 10) {
-      commentaire = "Passable";
-    } else {
-      commentaire = "À revoir";
-    }
-    let bulletin = {
-      nom: eleve.nom,
-      moyenne: moyenne,
-      commentaire: commentaire,
-    };
-    bulletins.push(bulletin);
-  }
-  return bulletins;
-}
+  if (eleves.length === 0) return [];
 
+  return eleves.map((eleve) => {
+    const notes = eleve.notes || [];
+
+    // Si l'élève n'a pas de notes, la moyenne = 0
+    const moyenne =
+      notes.length === 0 ? 0 : notes.reduce((a, b) => a + b, 0) / notes.length;
+
+    // Arrondi à deux décimales et conversion en nombre
+    const moyenneArrondie = Number(moyenne.toFixed(2));
+
+    // Attribution du commentaire selon la moyenne
+    let commentaire;
+    if (moyenneArrondie >= 16) commentaire = "Excellent";
+    else if (moyenneArrondie >= 14) commentaire = "Très Bien";
+    else if (moyenneArrondie >= 12) commentaire = "Bien";
+    else if (moyenneArrondie >= 10) commentaire = "Passable";
+    else commentaire = "À revoir";
+
+    return {
+      nom: eleve.nom,
+      moyenne: moyenneArrondie,
+      commentaire,
+    };
+  });
+}
 module.exports = {
-	showStudentBulletin,
+  showStudentBulletin,
 };

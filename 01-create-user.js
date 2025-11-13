@@ -12,7 +12,7 @@ La fonction doit retourner un objet contenant ces trois propriétés :
     - estConnecte (boolean)
 */
 
-function createUser(nom, age, estConnecté) {
+function createUser(nom, age, estConnecte) {
   return {
     nom: nom,
     age: age,
